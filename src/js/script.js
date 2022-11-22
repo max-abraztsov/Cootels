@@ -18,4 +18,48 @@ import '../img/meritt-thomas-u-Hb93V6IWI-unsplash 3.jpg';
 import '../img/ian-keefe-OgcJIKRnRC8-unsplash 1.jpg';
 import '../img/logo.svg';
 
+window.addEventListener('DOMContentLoaded', ()=>{
 
+    const level = document.querySelector(".level");
+    const sideButtons = level.querySelectorAll(".level__sidebutton");
+    const listDescription = level.querySelectorAll(".level__list-description");
+
+    function strokeEditAdd(index){
+        for (const item of sideButtons[index].children){
+            item.style.background = "#FFFFFF";
+        };
+        sideButtons[index].style.background = "#FF620A";
+    }
+
+    function strokeEditRemove(index){
+        for (const item of sideButtons[index].children){
+            item.style.background = "";
+        }
+        sideButtons[index].style.background = "";
+    }
+
+    function addActive(item){
+        item.classList.add('active');
+    }
+
+    function removeActive(arr){
+        arr.forEach((item,index,array)=>{
+            item.classList.remove('active');
+        });
+    }
+
+    sideButtons.forEach((item, index, array)=>{
+        item.addEventListener('click', ()=>{
+            if(!listDescription[index].classList.contains('active')){
+                removeActive(listDescription);
+                strokeEditRemove(index);
+                addActive(listDescription[index]); 
+                strokeEditAdd(index); 
+            } else {
+                removeActive(listDescription);
+                strokeEditRemove(index);
+            }
+        
+        });
+    });
+});

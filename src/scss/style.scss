@@ -247,12 +247,14 @@
     color: #424F7B;
 }
 .level__list-description {
+    display:none;
     max-width:516px;
     margin-top:24px;
 }
-.level__item:nth-child(odd) .level__list-description{
-    display:none;
+.active{
+    display:block;
 }
+
 .level__sidebutton {
     display:flex;
     transform: rotate(180deg);
