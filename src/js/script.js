@@ -29,13 +29,19 @@ window.addEventListener('DOMContentLoaded', ()=>{
             item.style.background = "#FFFFFF";
         };
         sideButtons[index].style.background = "#FF620A";
+        sideButtons[index].style.transform = "rotate(0deg)";
+        sideButtons[index].transition = "0.2s";
     }
 
-    function strokeEditRemove(index){
-        for (const item of sideButtons[index].children){
-            item.style.background = "";
-        }
-        sideButtons[index].style.background = "";
+    function strokeEditRemove(){
+        sideButtons.forEach((item, index, array)=>{
+            for (const item of sideButtons[index].children){
+                item.style.background = "";
+            }
+            sideButtons[index].style.background = "";
+            sideButtons[index].style.transform = "rotate(180deg)";
+            sideButtons[index].transition = "0.2s";
+        });
     }
 
     function addActive(item){
@@ -59,7 +65,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
                 removeActive(listDescription);
                 strokeEditRemove(index);
             }
-        
         });
     });
 });

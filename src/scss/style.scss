@@ -205,6 +205,7 @@
 .level__description {
     max-width:384px;
     margin: 24px 0 32px 0;
+    
 }
 .level__button {
     padding:16px 32px;
@@ -262,6 +263,7 @@
     width:40px;
     border-radius:50%;
     background-color: #FFECE2;
+    transition:0.2s;
 }
 .level__sidebutton-stroke {
     background-color: #FF620A;
