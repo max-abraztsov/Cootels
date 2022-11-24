@@ -231,7 +231,9 @@
     box-shadow: 2px 2px 20px #DADADA;
     margin-bottom:24px;
     border-radius:4px;
+    transition:0.1s;
     display: flex;
+    height:104px;
     justify-content:space-between;
 }
 .level__item:last-child{
@@ -249,13 +251,14 @@
 }
 .level__list-description {
     display:none;
+    opacity: 0;
+    transition:0.2s;
     max-width:516px;
     margin-top:24px;
 }
 .active{
     display:block;
 }
-
 .level__sidebutton {
     display:flex;
     transform: rotate(180deg);

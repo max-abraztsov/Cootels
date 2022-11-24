@@ -21,6 +21,7 @@ import '../img/logo.svg';
 window.addEventListener('DOMContentLoaded', ()=>{
 
     const level = document.querySelector(".level");
+    const levelItems = level.querySelectorAll(".level__item");
     const sideButtons = level.querySelectorAll(".level__sidebutton");
     const listDescription = level.querySelectorAll(".level__list-description");
 
@@ -30,7 +31,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         };
         sideButtons[index].style.background = "#FF620A";
         sideButtons[index].style.transform = "rotate(0deg)";
-        sideButtons[index].transition = "0.2s";
+        sideButtons[index].style.width = "42px";
     }
 
     function strokeEditRemove(){
@@ -40,7 +41,23 @@ window.addEventListener('DOMContentLoaded', ()=>{
             }
             sideButtons[index].style.background = "";
             sideButtons[index].style.transform = "rotate(180deg)";
-            sideButtons[index].transition = "0.2s";
+            sideButtons[index].style.width = "";
+        });
+    }
+
+    function editTextBlock(index){
+        levelItems[index].style.height = "178px";
+        setTimeout(()=>{
+            listDescription[index].style.opacity = "1";
+        },100);
+    }
+
+    function unEditTextBlock(){
+        levelItems.forEach((item, index, array) => {
+            item.style.height = "";
+        });
+        listDescription.forEach((item,index,array) => {
+            item.style.opacity = "0";
         });
     }
 
@@ -54,15 +71,20 @@ window.addEventListener('DOMContentLoaded', ()=>{
         });
     }
 
+    editTextBlock(0);
+    strokeEditAdd(0);
     sideButtons.forEach((item, index, array)=>{
         item.addEventListener('click', ()=>{
             if(!listDescription[index].classList.contains('active')){
                 removeActive(listDescription);
+                unEditTextBlock();
                 strokeEditRemove(index);
                 addActive(listDescription[index]); 
+                editTextBlock(index);
                 strokeEditAdd(index); 
             } else {
                 removeActive(listDescription);
+                unEditTextBlock();
                 strokeEditRemove(index);
             }
         });
