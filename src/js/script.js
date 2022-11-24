@@ -25,6 +25,11 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const sideButtons = level.querySelectorAll(".level__sidebutton");
     const listDescription = level.querySelectorAll(".level__list-description");
 
+    const client = document.querySelector(".client");
+    const clientParentItems = client.querySelector(".client__items");
+    const clientPoints = client.querySelectorAll(".client__point");
+    
+    // Functions for tabs /////////////////////////////////////////////
     function strokeEditAdd(index){
         for (const item of sideButtons[index].children){
             item.style.background = "#FFFFFF";
@@ -71,6 +76,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
         });
     }
 
+    // Functions for tabs ////////////////////////////////////////////
+
     editTextBlock(0);
     strokeEditAdd(0);
     sideButtons.forEach((item, index, array)=>{
@@ -89,4 +96,30 @@ window.addEventListener('DOMContentLoaded', ()=>{
             }
         });
     });
+
+    let numberOfItems = clientParentItems.children.length;
+    clientParentItems.style.width = `${numberOfItems*793}px`;
+    addStylesForPoint(0);
+
+    function deleteStylesForPoints(){
+        clientPoints.forEach((item,index,array) => {
+            item.style.cssText = ``;
+        });
+    }
+
+    function addStylesForPoint(index){
+        clientPoints[index].style.cssText = `
+                width:10px;
+                height: 10px;
+                background-color: #FAB047;
+            `;
+    }
+
+    clientPoints.forEach((item, index, array) =>{
+        item.addEventListener('click', ()=>{
+            deleteStylesForPoints();
+            clientParentItems.style.right = `${index*793}px`;
+            addStylesForPoint(index);
+        });
+    })
 });
