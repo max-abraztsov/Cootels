@@ -28,6 +28,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const client = document.querySelector(".client");
     const clientParentItems = client.querySelector(".client__items");
     const clientPoints = client.querySelectorAll(".client__point");
+
+    const header = document.querySelector(".header");
+    const headerItems = header.querySelectorAll(".header__item");
+    const headerStroke = header.querySelector(".header__stroke");
     
     // Functions for tabs /////////////////////////////////////////////
     function strokeEditAdd(index){
@@ -97,6 +101,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
         });
     });
 
+    // functions for slider
+
     let numberOfItems = clientParentItems.children.length;
     clientParentItems.style.width = `${numberOfItems*793}px`;
     addStylesForPoint(0);
@@ -121,5 +127,15 @@ window.addEventListener('DOMContentLoaded', ()=>{
             clientParentItems.style.right = `${index*793}px`;
             addStylesForPoint(index);
         });
-    })
+    });
+
+    // functions for stroke
+
+    headerItems.forEach((item, index, array) => {
+        item.addEventListener('click', () => {
+            headerStroke.style.width = `${headerItems[index].offsetWidth}px`;
+            headerStroke.style.marginLeft = `${headerItems[index].offsetLeft}px`;
+        });
+    });
+
 });

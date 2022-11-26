@@ -42,6 +42,9 @@
 }
 .header__items {
     display:flex;
+    position: relative;
+    top:0;
+    left:0;
 }
 .header__item {
     font-family: 'Inter';
@@ -50,7 +53,18 @@
     font-size: 16px;
     line-height: 19px;
     color: #192252;
-    padding-right:32px;
+    margin-right:32px;
+}
+.header__items li:last-child .header__item{
+    margin-right:0;
+}
+.header__stroke{
+    margin-top:5px;
+    width:52px;
+    height:4px;
+    background-color: #192252;
+    border-radius:2px;
+    transition:0.4s;
 }
 .header__button {
     padding:12px 14px;
