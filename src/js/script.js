@@ -32,6 +32,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const header = document.querySelector(".header");
     const headerItems = header.querySelectorAll(".header__item");
     const headerStroke = header.querySelector(".header__stroke");
+
+    const modal = document.querySelector(".modal");
+    const modalCross = modal.querySelector(".modal__cross");
     
     // Functions for tabs /////////////////////////////////////////////
     function strokeEditAdd(index){
@@ -136,6 +139,26 @@ window.addEventListener('DOMContentLoaded', ()=>{
             headerStroke.style.width = `${headerItems[index].offsetWidth}px`;
             headerStroke.style.marginLeft = `${headerItems[index].offsetLeft}px`;
         });
+    });
+
+    // function for modal
+
+    function closeModal(){
+        modal.style.display = 'none';
+    }
+
+    function setEnableDisableScroll(){
+        document.body.style.overflow = 'hidden';
+    }
+
+    setTimeout(() => {
+        modal.style.display = 'block';
+        setEnableDisableScroll();
+    }, 3000);
+
+    modalCross.addEventListener('click', ()=>{
+        closeModal();
+        document.body.style.overflow = '';
     });
 
 });
