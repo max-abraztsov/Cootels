@@ -36,6 +36,14 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const modal = document.querySelector(".modal");
     const modalCross = modal.querySelector(".modal__cross");
     const back = document.querySelector('.back-black');
+
+    const deadline = '2023-01-01';
+    const modalTimer = document.querySelector('.modal__timer');
+    const modalHours = modalTimer.querySelector('.modal__hours');
+    const modalDays = modalTimer.querySelector('.modal__days');
+    const modalMinuts = modalTimer.querySelector('.modal__minuts');
+    const modalSeconds = modalTimer.querySelector('.modal__seconds');
+
     
     // Functions for tabs /////////////////////////////////////////////
     function strokeEditAdd(index){
@@ -154,17 +162,53 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }
 
     setTimeout(() => {
+        setEnableDisableScroll();
         modal.style.display = 'block';
         modal.style.top = `${window.pageYOffset+(0.25 * document.documentElement.clientHeight)}px`;
         back.style.width = `${document.documentElement.clientWidth}px`;
         back.style.height = `${document.documentElement.clientHeight}px`;
         back.style.top = `${window.pageYOffset}px`;
         back.style.display = 'block';
-        setEnableDisableScroll();
+
     }, 3000);
 
     modalCross.addEventListener('click', ()=>{
         closeModal();
         document.body.style.overflow = '';
     });
+
+    // functions for timer
+    
+    function getTime(){
+        const time = Date.parse(deadline)-Date.parse(new Date),
+            days = Math.floor(time / 1000 / 60 / 60 / 24),
+            hours = Math.floor(time / 1000 / 60 / 60 % 24),
+            minuts = Math.floor(time / 1000 / 60 % 60),
+            seconds = Math.floor(time / 1000 % 60);
+
+        return {
+            days: days,
+            hours: hours,
+            minuts: minuts,
+            seconds: seconds,
+        }
+    }
+
+    function AddZero(item){
+        if (item < 10){
+            return `0${item}`;
+        }else {
+            return item;
+        }
+    } 
+
+    function reloadTimer(){
+        const objTime = getTime();
+        modalSeconds.innerHTML = `${AddZero(objTime.seconds)}`;
+        modalMinuts.innerHTML = `${AddZero(objTime.minuts)}`;
+        modalHours.innerHTML = `${AddZero(objTime.hours)}`;
+        modalDays.innerHTML = `${AddZero(objTime.days)}`;
+    }
+
+    setInterval(reloadTimer,1000);
 });
