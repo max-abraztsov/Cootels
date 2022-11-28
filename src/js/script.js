@@ -35,6 +35,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     const modal = document.querySelector(".modal");
     const modalCross = modal.querySelector(".modal__cross");
+    const back = document.querySelector('.back-black');
     
     // Functions for tabs /////////////////////////////////////////////
     function strokeEditAdd(index){
@@ -142,9 +143,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
     });
 
     // function for modal
-
+    
     function closeModal(){
         modal.style.display = 'none';
+        back.style.display = 'none';
     }
 
     function setEnableDisableScroll(){
@@ -153,6 +155,11 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     setTimeout(() => {
         modal.style.display = 'block';
+        modal.style.top = `${window.pageYOffset+(0.25 * document.documentElement.clientHeight)}px`;
+        back.style.width = `${document.documentElement.clientWidth}px`;
+        back.style.height = `${document.documentElement.clientHeight}px`;
+        back.style.top = `${window.pageYOffset}px`;
+        back.style.display = 'block';
         setEnableDisableScroll();
     }, 3000);
 
@@ -160,5 +167,4 @@ window.addEventListener('DOMContentLoaded', ()=>{
         closeModal();
         document.body.style.overflow = '';
     });
-
 });

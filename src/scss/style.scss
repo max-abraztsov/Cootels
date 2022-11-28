@@ -36,15 +36,28 @@
     top:0;
     left:0;
 }
+.back-black{
+    display:block;
+    background-color: black;
+    width:200px;
+    height:200px;
+    opacity:0.5;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 1;
+}
 .modal {
     display:none;
     position:absolute;
     top:0;
-    left:0;
+    left:50%;
+    transform: translateX(-50%);
     width:700px;
     height:400px;
     background-color: #fff;
     border-radius:4px;
+    z-index: 2;
 }
 .modal__cross {
     position:relative;
