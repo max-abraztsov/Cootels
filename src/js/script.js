@@ -44,7 +44,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const modalMinuts = modalTimer.querySelector('.modal__minuts');
     const modalSeconds = modalTimer.querySelector('.modal__seconds');
 
-    
+    const home = document.querySelector('.home');
+    const rooms = document.querySelector('.rooms');
+
+
     // Functions for tabs /////////////////////////////////////////////
     function strokeEditAdd(index){
         for (const item of sideButtons[index].children){
@@ -166,7 +169,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         modal.style.display = 'block';
         modal.style.top = `${window.pageYOffset+(0.25 * document.documentElement.clientHeight)}px`;
         back.style.width = `${document.documentElement.clientWidth}px`;
-        back.style.height = `${document.documentElement.clientHeight}px`;
+        back.style.height = `100%`;
         back.style.top = `${window.pageYOffset}px`;
         back.style.display = 'block';
 
@@ -211,4 +214,24 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }
 
     setInterval(reloadTimer,1000);
+    
+    // functions for scroll
+
+    function scrollTo(element){
+        window.scroll({
+            left:0,
+            top: element.offsetTop,
+            behavior: 'smooth',
+        })
+    }
+
+    function addScroll(clickElement,scrollElement){
+        clickElement.addEventListener('click', () => {
+            scrollTo(scrollElement);
+        });
+    }
+
+    addScroll(headerItems[0],rooms);
+    addScroll(headerItems[1],home);
+    addScroll(headerItems[2],level);
 });
