@@ -214,20 +214,17 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }
 
     setInterval(reloadTimer,1000);
-    
+
     // functions for scroll
 
-    function scrollTo(element){
-        window.scroll({
-            left:0,
-            top: element.offsetTop,
-            behavior: 'smooth',
-        })
-    }
-
     function addScroll(clickElement,scrollElement){
-        clickElement.addEventListener('click', () => {
-            scrollTo(scrollElement);
+        clickElement.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.log(scrollElement.offsetTop);
+            window.scrollBy({
+                top:scrollElement.offsetTop,
+                behavior: 'smooth',
+            })
         });
     }
 
