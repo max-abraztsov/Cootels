@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const modalCross = modal.querySelector(".modal__cross");
     const back = document.querySelector('.back-black');
 
-    const deadline = '2023-01-01';
+    const deadline = addDateToLocal('2023-01-01');
     const modalTimer = document.querySelector('.modal__timer');
     const modalHours = modalTimer.querySelector('.modal__hours');
     const modalDays = modalTimer.querySelector('.modal__days');
@@ -46,6 +46,18 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     const home = document.querySelector('.home');
     const rooms = document.querySelector('.rooms');
+
+    // functions for local storage
+
+    function addDateToLocal(date){
+        localStorage.setItem('finalDate', date);
+        return date;
+    }
+
+    function getDateFromLocal(item){
+        return localStorage.getItem(item);
+        
+    }
 
 
     // Functions for tabs /////////////////////////////////////////////
@@ -231,4 +243,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     addScroll(headerItems[0],rooms);
     addScroll(headerItems[1],home);
     addScroll(headerItems[2],level);
+
+    const date = getDateFromLocal('finalDate');
+    console.log(date);
 });
