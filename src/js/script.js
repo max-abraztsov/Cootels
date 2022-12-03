@@ -232,11 +232,18 @@ window.addEventListener('DOMContentLoaded', ()=>{
     function addScroll(clickElement,scrollElement){
         clickElement.addEventListener('click', (event) => {
             event.preventDefault();
-            console.log(scrollElement.offsetTop);
-            window.scrollBy({
-                top:scrollElement.offsetTop,
-                behavior: 'smooth',
-            })
+            setTimeout(()=>{
+                window.scroll({
+                    left: 0,
+                    top:scrollElement.offsetTop,
+                    behavior: 'smooth',
+                })
+            }, 500);
+            // window.scroll({
+            //     left: 0,
+            //     top:scrollElement.offsetTop,
+            //     behavior: 'smooth',
+            // })
         });
     }
 
@@ -246,4 +253,28 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     const date = getDateFromLocal('finalDate');
     console.log(date);
+
+    
+
+    function sendRequest(){
+        const requestURL = 'https://jsonplaceholder.typicode.com/users';
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', requestURL);
+
+    xhr.onload = () => {
+        if (xhr.status >= 400){
+            console.error(xhr.response);
+        }else{
+            console.log(JSON.parse(xhr.response)); 
+        }
+    }
+
+    xhr.onerror = () => {
+        console.log(xhr.response);
+    }
+
+    xhr.send();
+    }
 });
